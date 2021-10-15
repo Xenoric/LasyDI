@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LasyDI</name>
+    </assembly>
+    <members>
+        <member name="T:LasyDI.InjectAttribute">
+            <summary>
+             Атрибут по создания метода-конструктора для Mono или .Net класса
+            </summary>
+        </member>
+        <member name="T:LasyDI.AbstractImplementationOption`2">
+            <summary>
+             Расширение для внедрения зависимости типа - интерфейса или абстракции <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/>
+            </summary>
+            <typeparam name="I">Интерфейс или абстракции, что используется в зависимости текущего класса</typeparam>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``1(``0)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``2(``0,``1)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <param name="implementation2">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``3(``0,``1,``2)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <param name="implementation2">Реализация интерфейса или абстракции</param>
+            <param name="implementation3">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``4(``0,``1,``2,``3)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <param name="implementation2">Реализация интерфейса или абстракции</param>
+            <param name="implementation3">Реализация интерфейса или абстракции</param>
+            <param name="implementation4">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``5(``0,``1,``2,``3,``4)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T5">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <param name="implementation2">Реализация интерфейса или абстракции</param>
+            <param name="implementation3">Реализация интерфейса или абстракции</param>
+            <param name="implementation4">Реализация интерфейса или абстракции</param>
+            <param name="implementation5">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromImplementation``6(``0,``1,``2,``3,``4,``5)">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через реализацию
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T5">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T6">Тип интерфейса или абстракции</typeparam>
+            <param name="implementation1">Реализация интерфейса или абстракции</param>
+            <param name="implementation2">Реализация интерфейса или абстракции</param>
+            <param name="implementation3">Реализация интерфейса или абстракции</param>
+            <param name="implementation4">Реализация интерфейса или абстракции</param>
+            <param name="implementation5">Реализация интерфейса или абстракции</param>
+            <param name="implementation6">Реализация интерфейса или абстракции</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``1">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``2">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``3">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``4">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``5">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T5">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.AbstractImplementationOption`2.FromContainer``6">
+            <summary>
+            Указать интерфейс или абстракцию для метода-конструктора, через зависимость DI-контейнера
+            </summary>
+            <typeparam name="T1">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T2">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T3">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T4">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T5">Тип интерфейса или абстракции</typeparam>
+            <typeparam name="T6">Тип интерфейса или абстракции</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="T:LasyDI.ExtentionImplementationObjectDI">
+            <summary>
+            Класс расширения по настройке зависимости объекта-контекста <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/>
+            </summary>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WhereInstance``2(LasyDI.DIContainer.ImplementationObjectDIContext{``1},``0)">
+            <summary>
+            Указать конкретную реализацию зависимости
+            </summary>
+            <typeparam name="I">Любой класс Mono или .Net - реализация</typeparam>
+            <typeparam name="T">Любой класс Mono или .Net - зависимость</typeparam>
+            <param name="context"></param>
+            <param name="instance">Объект реализация зависимости</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``2(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``3(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1,``2)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T2">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``4(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1,``2,``3)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T2">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T3">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <param name="value3"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``5(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1,``2,``3,``4)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T2">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T3">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T4">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <param name="value3"></param>
+            <param name="value4"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``6(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1,``2,``3,``4,``5)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T2">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T3">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T4">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T5">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <param name="value3"></param>
+            <param name="value4"></param>
+            <param name="value5"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.WithParameters``7(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``1,``2,``3,``4,``5,``6)">
+            <summary>
+            Указать параметры для метода-конструктора
+            </summary>
+            <remarks>
+            Порядок инициализации для повторяющихся типов аргументов метода-конструктора “Л ⇒ П”
+            </remarks>
+            <typeparam name="I">Любой класс Mono или .Net - зависимость</typeparam>
+            <typeparam name="T1">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T2">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T3">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T4">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T5">Тип аргумента метода-конструктора</typeparam>
+            <typeparam name="T6">Тип аргумента метода-конструктора</typeparam>
+            <param name="context"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <param name="value3"></param>
+            <param name="value4"></param>
+            <param name="value5"></param>
+            <param name="value6"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.FromPrefab``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0},``0)">
+            <summary>
+            Указать конкретную реализацию зависимости в Unity среде - префаб, задаем прямую ссылку
+            </summary>
+            <typeparam name="T">Любой класс Mono или наследник <see cref="T:UnityEngine.Component"/></typeparam>
+            <param name="context"></param>
+            <param name="prefab">Шаблон объекта среды Unity</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.FromPrefabInResources``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0},System.String)">
+            <summary>
+            Указать конкретную реализацию зависимости в Unity среде - префаб, загружаем из ресурсов
+            </summary>
+            <typeparam name="T">Любой класс Mono или наследник <see cref="T:UnityEngine.Component"/></typeparam>
+            <param name="context"></param>
+            <param name="parth">Путь к префабу в папке Resources</param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.FromGameObjectOnScene``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0})">
+            <summary>
+            Указать конкретную реализацию зависимости в Unity среде - объект на текущей сцене
+            </summary>
+            <remarks>
+            Внедрение зависимости происходит для найденного объекта и всех его следующих реализации, если тип связи - AsTransit()
+            </remarks>
+            <typeparam name="T">Любой класс Mono или наследник <see cref="T:UnityEngine.Component"/></typeparam>
+            <param name="context"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.FromGameObjectOnSceneLikePrefab``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0})">
+            <summary>
+            Указать конкретную реализацию зависимости в Unity среде - использовать объект на сцене, как префаб
+            </summary>
+            <remarks>
+            Внедрение зависимости происходит для копий-реализаций объекта, кроме найденного объекта
+            </remarks>
+            <typeparam name="T">Любой класс Mono или наследник <see cref="T:UnityEngine.Component"/></typeparam>
+            <param name="context"></param>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.IsAutoCreated``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0})">
+            <summary>
+            Указать, что создаем объект сразу после связывания в контейнере
+            </summary>
+            <remarks>
+            Создание происходит в Start во всех Контекст-классах <see cref="T:LasyDI.ProjectContext"/> и <see cref="T:LasyDI.SceneContext"/>
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.AsSingle``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0})">
+            <summary>
+            Указать тип связи для зависимости
+            </summary>
+            <remarks>
+            Реализация зависимости существует в одном экземпляре
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="context"></param>
+        </member>
+        <member name="M:LasyDI.ExtentionImplementationObjectDI.AsTransit``1(LasyDI.DIContainer.ImplementationObjectDIContext{``0})">
+            <summary>
+            Указать тип связи для зависимости
+            </summary>
+            <remarks>
+            Реализация зависимости происходит при вызове (по-умолчанию)
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="context"></param>
+        </member>
+        <member name="T:LasyDI.LasyContainer">
+            <summary>
+            Класс предоставляет точку доступа к основным функциям DI контейнера.
+            </summary>
+        </member>
+        <member name="M:LasyDI.LasyContainer.Bind``1">
+            <summary>
+            Метод создания зависимости для любого класса
+            </summary>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.LasyContainer.Bind``2">
+            <summary>
+            Метод создания зависимости для любого класса реализации интерфейса или абстракции
+            </summary>
+            <typeparam name="I">Интерфейс или абстракция</typeparam>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+            <returns>Объект-контекст настройки зависимости <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.LasyContainer.BindPool``2">
+            <summary>
+            Метод создания зависимости для пула с реализацией любого класса
+            </summary>
+            <typeparam name="P">Класс реализации пула <see cref="T:LasyDI.Pool.BasePoolObjectDI`1"/></typeparam>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+            <returns>Объект-контекст настройки зависимости класса, что реализует текущий пул <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.LasyContainer.BindPool``3">
+            <summary>
+            Метод создания зависимости для пула с реализацией любого класса
+            </summary>
+            <typeparam name="P">Класс реализации пула <see cref="T:LasyDI.Pool.BasePoolObjectDI`1"/></typeparam>
+            <typeparam name="I">Интерфейс или абстракция</typeparam>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+            <returns>Объект-контекст настройки зависимости класса, что реализует текущий пул <see cref="T:LasyDI.DIContainer.ImplementationObjectDIContext`1"/></returns>
+        </member>
+        <member name="M:LasyDI.LasyContainer.GetObject``1">
+            <summary>
+            Метод получения объекта из контейнера с внедренными зависимостями
+            </summary>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+            <returns>Реализация объекта с зависимостями</returns>
+        </member>
+        <member name="T:LasyDI.Pool.BasePoolObjectDI`1">
+            <summary>
+            Класс по реализации пула объектов с использование DI или IoC для объектов
+            </summary>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+        </member>
+        <member name="M:LasyDI.Pool.BasePoolObjectDI`1.Spawn">
+            <summary>
+            Получить объект из пула
+            </summary>
+            <returns>Реализация объекта с зависимостями</returns>
+        </member>
+        <member name="M:LasyDI.Pool.BasePoolObjectDI`1.Despawn(`0)">
+            <summary>
+            Возвращение объекта в пул
+            </summary>
+            <param name="currentObject">Любой объект реализации класса Mono или .Net</param>
+        </member>
+        <member name="M:LasyDI.Pool.BasePoolObjectDI`1.OnSpawn(`0)">
+            <summary>
+            Метод дополнительной настройки объекта при получение из пула
+            </summary>
+            <param name="currentObject"></param>
+        </member>
+        <member name="M:LasyDI.Pool.BasePoolObjectDI`1.OnDespawn(`0)">
+            <summary>
+            Метод дополнительной настройки объекта при возвращение в пул
+            </summary>
+            <param name="currentObject"></param>
+        </member>
+        <member name="T:LasyDI.Context">
+            <summary>
+            Контекст-класс для реализации запуска внедрения зависимостей DI контейнера использует реализации инсталлеров <see cref="T:LasyDI.MonoInstaller"/> и <see cref="T:LasyDI.ScriptableObjectInstaller"/>
+            </summary>
+        </member>
+        <member name="T:LasyDI.ProjectContext">
+            <summary>
+            Контекст-класс для реализации запуска внедрения зависимостей DI контейнера использует реализации инсталлеров <see cref="T:LasyDI.MonoInstaller"/> и <see cref="T:LasyDI.ScriptableObjectInstaller"/>
+            </summary>
+            <remarks>
+            Автоматическое создание при старте сессии.
+            Создает зависимость для всего проекта в рамках одной сессии.
+            В папке ресурсы должен быть префаб с данным классом.
+            </remarks>
+        </member>
+        <member name="T:LasyDI.SceneContext">
+            <summary>
+            Контекст-класс для реализации запуска внедрения зависимостей DI контейнера использует реализации инсталлеров <see cref="T:LasyDI.MonoInstaller"/> и <see cref="T:LasyDI.ScriptableObjectInstaller"/>
+            </summary>
+            <remarks>
+            Создается и настраивается в ручную на сцене.
+            Создает зависимости в для проекта в рамках текущей сцены.
+            ВНИМАНИЕ! При уничтожение контекст-объекта зависимости будут удалены из DI контейнера.
+            </remarks>
+        </member>
+        <member name="T:LasyDI.DIContainer.Container">
+            <summary>
+            Контейнер класс по хранению зависимостей
+            </summary>
+        </member>
+        <member name="T:LasyDI.DIContainer.ContainerService">
+            <summary>
+            Сервис класс с реализаций основных функций по созданию, использованию и удалению зависимостей в DI контейнере
+            </summary>
+        </member>
+        <member name="T:LasyDI.DIContainer.ImplementationObjectDIContext`1">
+            <summary>
+            Контекс класс настройки реализации зависимости DI-контейнера с рабочим расширением <see cref="T:LasyDI.ExtentionImplementationObjectDI"/>
+            </summary>
+            <typeparam name="T">Любой класс Mono или .Net</typeparam>
+        </member>
+        <member name="M:LasyDI.DIContainer.ImplementationObjectDIContext`1.LasyDI#DIContainer#IImplementationContext#SetImplementation(System.Object)">
+            <summary>
+            Задаем реализацию при работе через интерфейс
+            </summary>
+            <param name="implementationObject"></param>
+        </member>
+        <member name="M:LasyDI.DIContainer.ImplementationObjectDIContext`1.WhereAbstraction``1">
+            <summary>
+            Метод по работе с зависимостью типа - интерфейс или абстракция
+            </summary>
+            <typeparam name="I">Интерфейс или абстракция</typeparam>
+            <returns>Расширение для внедрения зависимости типа - интерфейса или абстракции<see cref="T:LasyDI.AbstractImplementationOption`2"/></returns>
+        </member>
+        <member name="M:LasyDI.DIContainer.ImplementationObjectDIContext`1.SetImplementation(System.Object)">
+            <summary>
+            Задаем реализацию при работе через расширение
+            </summary>
+            <param name="implementationObject"></param>
+        </member>
+        <member name="T:LasyDI.DIContainer.ImplementationObjectInfo">
+            <summary>
+            Данные по созданию объекта из DI контейнера
+            </summary>
+        </member>
+        <member name="T:LasyDI.Bank.ContainerBank">
+            <summary>
+            Класс хранилище по предоставлению ссылок на контейнер через типы зависимостей
+            </summary>
+        </member>
+    </members>
+</doc>
