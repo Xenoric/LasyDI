@@ -5,8 +5,8 @@
 
 <details>
 <summary>Список глав</summary>
--[Введение](#Введение)
--[Документация](#Документация)
+- [Введение](#введение)
+- [Документация](#документация)
 </details>
 
 ## Введение
@@ -15,6 +15,6 @@ LasyDI является упрощенной реализацией Zenject дл
 
 ## Документация
 
-[LasyDI Общий концепт](https://drive.google.com/file/d/1OdIwK7-O2hIVJSBxtZjyR4al_4AqMZu3/view?usp=sharing) 
-[LasyDI Диаграмма Классов](https://drive.google.com/file/d/1sMltTYFAQrTW0ct4QIYRo5yYQsKM5a7i/view?usp=sharing)
+- [LasyDI Общий концепт](https://drive.google.com/file/d/1OdIwK7-O2hIVJSBxtZjyR4al_4AqMZu3/view?usp=sharing) 
+- [LasyDI Диаграмма Классов](https://drive.google.com/file/d/1sMltTYFAQrTW0ct4QIYRo5yYQsKM5a7i/view?usp=sharing)
 
