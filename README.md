@@ -13,7 +13,14 @@
     - [Scene Context](#Scene-Context)
     - [Installer](#Installer)
     - [Hello World](#Hello-World-Example)
+    - [Внедрение зависимостей](#Внедрение-зависимостей)
     - [Связывание](#Связывание)
+        - [Bind](#Bind)
+        - [Настройка](#Настройка)
+            - [Общее](#Общее)
+            - [Работа с параметрами](#Работа-с-параметрами)
+            - [Работа с абстракцией](#Работа-с-абстракцией)
+            - [Работа с Unity](#Работа-с-Unity)
 
 
 </details>
@@ -91,15 +98,15 @@ public sealed class Logger
 * Не забываем указать ссылку на Installer в нужное поле объектов ProjectContext или SceneContext
 
 
-## Связывание
+## Внедрение зависимостей
 
-LasyDI реализовано связывание через конструктор или метод помеченный атрибутом `[Inject]`
+LasyDI реализовано внедрение зависимостей через конструктор или метод помеченный атрибутом `[Inject]`
 
-1 **.Net класс - конструктор**
+1 - **.Net класс - конструктор**
 ```csharp
 public class SomeClass
 {
-    // При таком способе связывания, поля могут быть readonly
+    // При таком способе внедрение, поля могут быть readonly
     private readonly ITestLink _testLink;
     private Object1 _object1;
 
@@ -111,7 +118,7 @@ public class SomeClass
 }
 ```
 
-2 **.Net класс - метод с атрибутом `[Inject]`**
+2 - **.Net класс - метод с атрибутом `[Inject]`**
 ```csharp
 public class SomeClass
 {
@@ -127,7 +134,7 @@ public class SomeClass
 }
 ```
 
-3 **MonoBehaviour классы - метод с атрибутом `[Inject]`**
+3 - **MonoBehaviour классы - метод с атрибутом `[Inject]`**
 ```csharp
 public class SomeMonoClass : MonoBehaviour
 {
@@ -141,4 +148,182 @@ public class SomeMonoClass : MonoBehaviour
         _object1 = object1;
     }
 }
+```
+
+# Связывание
+LasyDI поддерживает 4 основных типа связывания.
+Рекомендуется работать через интерфейсы и абстракции для поддержания принципа DIP.
+Нельзя создать зависимость от абстрактного класса или интерфейса.
+
+```csharp
+using LasyDI;
+using UnityEngine;
+
+public sealed class TestInstaller : MonoInstaller
+{
+    public override void OnInstall()
+    {
+        LasyContainer.Bind<AbstractClass>();    //будет ошибка
+        LasyContainer.Bind<ISomeInterface>();   //будет ошибка
+        LasyContainer.Bind<SomeClass>();        //допустимо
+    }
+}
+
+public abstract class AbstractClass
+{
+    //...
+}
+
+public interface ISomeInterface
+{
+    //...
+}
+
+public class SomeClass : AbstractClass, ISomeClass
+{
+    //...
+}
+```
+
+## Bind
+
+1 - **Связывание через конкретный тип объекта**
+
+```csharp
+    LasyContainer.Bind<SomeClass>();
+```
+
+2 - **Связывание через абстракцию объекта (интерфейс или абстрактный класс)**
+
+```csharp
+    LasyContainer.Bind<ISomeClass, SomeClass>();
+    LasyContainer.Bind<AbstractClass, SomeClass>();
+```
+* Важно! Для объекта реципиента необходимо указывать, конкретный тип объекта реализации абстракции, подробнее в [Работа с абстракцией](#Работа-с-абстракцией).
+
+3 - **Создание пула и связывание через конкретный тип объекта**
+
+```csharp
+    using LasyDI;
+    using LasyDI.Pool;
+
+    //создание зависимости через пулл
+    LasyContainer.BindPool<SomePool, SomeClass>();
+
+    //класс пула объектов типа SomeClass
+    public class SomePool : BasePoolObjectDI<SomeClass>
+    {
+        //...
+    }
+    //объект который будет извлекать из пула
+    public class SomeClass
+    {
+        //...
+    } 
+```
+* Важно! Объектом пула не может быть абстрактный класс или интерфейс, как указывалось в [Связывание](#Связывание)
+
+## Настройка
+
+### Общее
+
+1 - **Задать в настройках определенную реализацию объекта.**
+
+```csharp
+    var someClassImplementation = new SomeClass();
+
+    LasyContainer.Bind<SomeClass>()
+                 .WhereInstance(someClassImplementation);
+```
+Актуально и для наследников.
+
+```csharp
+    public class SomeClassChild : SomeClass {}
+
+    var someClassImplementation = new SomeClassChild();
+
+    LasyContainer.Bind<SomeClass>()
+                 .WhereInstance(someClassImplementation);
+```
+
+2 - **Указать, что создаем объект сразу после связывания в контейнере**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                 .IsAutoCreated();
+```
+Объект указанного типа создаться сразу после окончания инициализации [Project Context](#Project-Context) или [Scene Context](#Scene-Context).
+
+3 - **Указать тип связи для зависимости - единичный объект**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                 .AsSingle();
+```
+Указываем, что для любого реципиента зависимости будет существовать один объект связанного типа.
+
+4 - **Указать тип связи для зависимости - новый объект (по-умолчанию)**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                 .AsTransit();
+```
+Указываем, что для любого реципиента зависимости будет создавать новый объект связанного типа.
+
+### Работа с параметрами
+
+Если связанный тип имеет в конструкторе или методе помеченным атрибутом `[Inject]`,
+параметры, что не имеют связь в LasyDI, то необходимо указать параметры через метод `WithParameters<T1...T6>()`
+
+* Важно! Максимально число указанных параметров, не может быть больше 6.
+
+```csharp
+    public class SomeClass
+    {
+        //...
+        public SomeClass(int i, string s)
+        {
+            //...
+        }
+    }
+
+    LasyContainer.Bind<SomeClass>()
+                 .WithParameters("test", 123);
+                 //аналогично что и  :
+                 //.WithParameters(123, "test");
+```
+
+* Важно! Если у параметров уникальные сигнатуры, то порядок не имеет значение. Однако, если сигнатуры совпадают, то порядок указанных параметров важен.
+
+```csharp
+    public class SomeClass
+    {
+        //...
+        public SomeClass(int i_1, int i_2, string s)
+        {
+            Debug.Log($"{i_1} | {i_2} | {s}");
+            //case - 1
+            // Output : 100 | 200 | test
+            //case - 2
+            // Output : 200 | 100 | test
+        }
+    }
+
+    //case - 1
+    LasyContainer.Bind<SomeClass>()
+                 .WithParameters(100, 200, "test");
+
+    //case - 2
+    LasyContainer.Bind<SomeClass>()
+                 .WithParameters(200, "test", 100);
+```
+
+### Работа с абстракцией
+
+Если в сигнатуре конструктора или метода помеченным атрибутом `[Inject]`, есть абстрактные или интерфейс параметры, 
+то необходимо указать тип, который будет реализовывать данную абстракцию или интерфейс. 
+Для начала работы с абстракциями нужно воспользоваться методом `WhereAbstraction<I>()`
+
+```csharp
+    
 ```
