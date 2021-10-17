@@ -37,7 +37,7 @@ LasyDI является упрощенной реализацией Zenject дл
 
 ## Установка
 
-__GitHub Release[Releases Page]()__
+__GitHub Release[Releases Page](https://github.com/blackroomgames/LasyDI/releases)__
 
 * Перейти по ссылке
 * Выбрать актуальный релизный билд **LasyDI.vX.X.unitypackage**
