@@ -1,13 +1,13 @@
 # LasyDI
-Упрощенная версия Zenject с реализацией DI и IoC.
+Упрощенная версия Zenject с реализацией DI и IoC, для внутренней разработки.
 
 ## Оглавление
 
 <details>
 <summary>Список глав</summary>
 
-- [Введение](#введение)
-- [Документация](#документация)
+- [Введение](#Введение)
+- [Документация](#Документация)
 - [Знакомство с LasyDI API](#Знакомство-с-LasyDI-API)
     - [Project Context](#Project-Context)
     - [Scene Context](#Scene-Context)
@@ -21,6 +21,7 @@
             - [Работа с параметрами](#Работа-с-параметрами)
             - [Работа с абстракцией](#Работа-с-абстракцией)
             - [Работа с Unity](#Работа-с-Unity)
+- [Примечание](#Примечание)
 
 
 </details>
@@ -322,8 +323,168 @@ public class SomeClass : AbstractClass, ISomeClass
 
 Если в сигнатуре конструктора или метода помеченным атрибутом `[Inject]`, есть абстрактные или интерфейс параметры, 
 то необходимо указать тип, который будет реализовывать данную абстракцию или интерфейс. 
-Для начала работы с абстракциями нужно воспользоваться методом `WhereAbstraction<I>()`
+Для начала работы с абстракциями нужно воспользоваться методом `WhereAbstraction<I>()` во время настройки связности.
+
+Далее необходимо указать откуда будет браться зависимость:
+* `FromImplementation<T1...T6>()` - из конкретной реализации абстракции, которую передаем в качестве параметра.
+* `FromContainer<T1...T6>` - из контейнера, с учетом всех связанных зависимостей объекта.
+
+1 - **Пример моно-сигнатурной абстракции**
+
+* Есть класс `SomeClass` у него есть зависимость от интерфейса `ISomeInterface`
 
 ```csharp
-    
+    public class SomeClass
+    {
+        //...
+        public SomeClass(ISomeInterface interfaceObject){}
+    }   
 ```
+
+* Есть два класса, что реализует интерфейс `ISomeInterface`
+
+```csharp
+    public class InterfaceClass_1 : ISomeInterface
+    {
+        //...
+    }
+
+    public class InterfaceClass_2 : ISomeInterface
+    {
+        //...
+    }   
+```
+
+* На этапе инициализации связей, необходимо указать для класса `SomeClass` зависимость от конкретного типа, что реализует интерфейс `ISomeInterface`
+
+```csharp
+    LasyContainer.Bind<InterfaceClass_1>().AsSingle();
+    var interfaceObject2 = new InterfaceClass_2();
+
+    LasyContainer.Bind<SomeClass>()
+                    .WhereAbstraction<ISomeInterface>()
+                    .FromContainer<InterfaceClass_1>();     //зависимость берется из контейнера
+    //или
+    LasyContainer.Bind<SomeClass>()
+                    .WhereAbstraction<ISomeInterface>()
+                    .FromImplementation(interfaceObject2);  //зависимость берется из реализации
+```
+
+* Как и в [Работа с параметрами](#Работа-с-параметрами) если в конструкторе класса, имеется более двух одинаковых моно-сигнатур абстракции, 
+то важен порядок определения типов реализации абстракции. 
+
+```csharp
+    public class SomeClass
+    {
+        //...
+        public SomeClass(ISomeInterface interfaceObject1, ISomeInterface interfaceObject2){}
+    }  
+
+    LasyContainer.Bind<SomeClass>()
+                    .WhereAbstraction<ISomeInterface>()
+                    .FromContainer<InterfaceClass_1, InterfaceClass_2>(); 
+    //не тоже самое, что и
+    LasyContainer.Bind<SomeClass>()
+                    .WhereAbstraction<ISomeInterface>()
+                    .FromContainer<InterfaceClass_2, InterfaceClass_1>(); 
+```
+
+2 - **Пример мульти-сигнатурной абстракции**
+
+* Есть класс `SomeClass` у него есть зависимость от интерфейса `ISomeInterface` и `IOtherInterface`
+
+```csharp
+    public class SomeClass
+    {
+        //...
+        public SomeClass(ISomeInterface someInterfaceObject, IOtherInterface otherInterfaceObject){}
+    }  
+```
+
+* Есть два класса, что реализует интерфейс `ISomeInterface` и `IOtherInterface`
+
+```csharp
+    public class SomeInterfaceClass : ISomeInterface
+    {
+        //...
+    }
+
+    public class OtherInterfaceClass : IOtherInterface
+    {
+        //...
+    }
+```
+
+* На этапе инициализации связей, необходимо указать для класса `SomeClass` зависимость от конкретного типа, что реализует интерфейс `ISomeInterface` и `IOtherInterface`
+
+```csharp
+    LasyContainer.Bind<SomeInterfaceClass>().AsSingle();
+    LasyContainer.Bind<OtherInterfaceClass>().AsSingle();
+
+    LasyContainer.Bind<SomeClass>()
+                    //указываем зависимость от первой абстракции
+                    .WhereAbstraction<ISomeInterface>()
+                    .FromContainer<SomeInterfaceClass>()
+                    //указываем зависимость от второй абстракции 
+                    .WhereAbstraction<IOtherInterface>()
+                    .FromContainer<OtherInterfaceClass>()
+```
+
+### Работа с Unity
+
+Все объекты реципиенты среды Unity с связью в LasyDI, должны иметь метод-конструктор помеченным атрибутом `[Inject]` с модификатором доступа - `public`. 
+Рекомендуется выбирать название метода максимально схожим в его функциональности, как вариант - `Construct()`
+
+
+1 - **Указать реализацию для связи из объекта-префаба**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                .FromPrefab("префаб объекта с компонентом - прямая ссылка");
+```
+
+Данный метод настройки связи, задает префаб для создания объекта на сцене и внедрение зависимости в данный объект.
+
+2 - **Указать реализацию для связи из объекта-префаба, через подгрузку из ресурсов**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                .FromPrefabInResources("путь к перфабу в Resources");
+```
+Данный метод производит поиск в папке Resources, при условии, что объект был найден, производит настройку связи. 
+
+* Важно! Так как происходит поиск через Resources, то скорость работы зависит от иерархии и наполнения папки Resources. 
+  Имеется высокий шанс ошибки связанной с неверным путем к нужному ресурсу.
+
+3 - **Найти объект на сцене и задать реализацию связи**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                .FromGameObjectOnScene();
+```
+
+Производиться поиск объекта на сцене с соответствующим типом. Необходимо использовать только с [Scene Context](#Scene-Context) 
+Внедрение зависимости происходит в найденном объекте и во всех последующих копиях, если используется тип связи `AsTransit()`
+
+4 - **Найти объект на сцене и использовать его, как префаб**
+
+```csharp
+    LasyContainer.Bind<SomeClass>()
+                .FromGameObjectOnSceneLikePrefab();
+```
+
+Производиться поиск объекта на сцене с соответствующим типом. Необходимо использовать только с [Scene Context](#Scene-Context) 
+Внедрение зависимости происходит только и во всех последующих копиях, кроме найденого объекта.
+
+# Примечание
+
+“Минимум затрат на освоение, максимальная выгода!”
+
+LasyDI служит для быстрого обучения, низкоуровневых разработчиков, которые впоследствии, могут продолжить работу на Zenject, так как основной функционал и подход схож.
+
+LasyDI планируется расширяться и дополняться, через работу над будущими внутренними рабочими проектами.
+
+# Проекты с LasyDI
+
+- [Invaders Remake](https://play.google.com/store/apps/details?id=com.blackroomgame.spaceinvaders) 
+- [Cute Zoo: 2048 Merge Game](https://play.google.com/store/apps/details?id=com.blackroomgame.cutezoo2048) 
