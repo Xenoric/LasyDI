@@ -55,6 +55,16 @@ namespace LasyDI
             return _containerService.Bind<T>();
         }
 
+        /// <summary>
+        /// Метод получения объекта из контейнера с внедренными зависимостями
+        /// </summary>
+        /// <typeparam name="T">Любой класс Mono или .Net</typeparam>
+        /// <returns>Реализация объекта с зависимостями</returns>
+        public static T GetObject<T>() where T : class
+        {
+            return (T)_containerService.GetObject(typeof(T));
+        }
+
         #endregion
     }
 }
