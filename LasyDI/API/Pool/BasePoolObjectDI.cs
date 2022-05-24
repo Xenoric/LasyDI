@@ -9,7 +9,7 @@ namespace LasyDI.Pool
     public abstract class BasePoolObjectDI<T> : IPoolObjectDI
         where T : class
     {
-        private List<T> _poolObjects = new List<T>();
+        private LinkedList<T> _poolObjects = new LinkedList<T>();
         /// <summary>
         /// Получить объект из пула
         /// </summary>
@@ -20,14 +20,14 @@ namespace LasyDI.Pool
 
             if (_poolObjects.Count != 0)
             {
-                result = _poolObjects[default];
+                result = _poolObjects.First.Value;
+                _poolObjects.RemoveFirst();
             }
             else
             {
                 result = LasyContainer.GetObject<T>();
             }
 
-            _poolObjects.Remove(result);
             OnSpawn(result);
 
             return result;
@@ -37,8 +37,8 @@ namespace LasyDI.Pool
         /// </summary>
         /// <param name="currentObject">Любой объект реализации класса Mono или .Net</param>
         public void Despawn(T currentObject)
-        { 
-            _poolObjects.Add(currentObject);
+        {
+            _poolObjects.AddFirst(currentObject);
             OnDespawn(currentObject);
         }
         /// <summary>

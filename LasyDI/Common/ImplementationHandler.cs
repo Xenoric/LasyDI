@@ -12,7 +12,7 @@ namespace LasyDI.Common
             var methodInfos = typeof(T).GetMethods();
             constructMethod = default;
 
-            for (var i = 0; i < methodInfos.Length; ++i)
+            for (var i = 0; i < methodInfos.Length - 1; ++i)
             {
                 if (methodInfos[i].GetCustomAttribute<InjectAttribute>() != default)
                 {
