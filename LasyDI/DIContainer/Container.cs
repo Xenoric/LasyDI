@@ -69,12 +69,14 @@ namespace LasyDI.DIContainer
             {
                 if (foundImplementation.BindType == BindType.Single)
                 {
-                    if (foundImplementation.ImplementationObject == null
-                        || foundImplementation.InstanceType == InstanceType.Implemented
-                        || foundImplementation.InstanceType == InstanceType.ImplementedPrefab)
+                    if (foundImplementation.ImplementationObject == null)
                     {
-                        result = CreateCallback.Invoke(foundImplementation.GetImplementationObjectInfo());
-                        foundImplementation.SetImplementation(result);
+                        if (foundImplementation.InstanceType != InstanceType.Implemented
+                            | foundImplementation.InstanceType != InstanceType.ImplementedPrefab)
+                        {
+                            result = CreateCallback.Invoke(foundImplementation.GetImplementationObjectInfo());
+                            foundImplementation.SetImplementation(result);
+                        }
                     }
                     else
                     {
