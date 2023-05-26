@@ -80,7 +80,14 @@ namespace LasyDI.DIContainer
                     }
                     else
                     {
-                        result = foundImplementation.ImplementationObject;
+                        if(foundImplementation.InstanceType == InstanceType.ImplementedSceneObject)
+                        {
+                            result = CreateCallback.Invoke(foundImplementation.GetImplementationObjectInfo());
+                        }
+                        else
+                        {
+                            result = foundImplementation.ImplementationObject;
+                        }
                     }
                 }
                 else

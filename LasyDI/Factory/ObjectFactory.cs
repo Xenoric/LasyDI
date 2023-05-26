@@ -42,7 +42,8 @@ namespace LasyDI.DIContainer
 
                 if (objectInfo.implementationType == ImplementationType.Mono)
                 {
-                    if(objectInfo.instanceType != InstanceType.Implemented)
+                    if(objectInfo.instanceType != InstanceType.Implemented
+                        & objectInfo.instanceType != InstanceType.ImplementedSceneObject)
                     {
                         newObject = CreateMonoObject(objectInfo.objectType, (Object)newObject);
                     }

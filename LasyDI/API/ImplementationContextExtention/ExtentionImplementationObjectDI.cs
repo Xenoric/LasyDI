@@ -272,7 +272,7 @@ namespace LasyDI
                 ErrorHandler.SendNotFoundMonoObject<T>();
             }
 
-            context.SetInstanceType(InstanceType.Implemented);
+            context.SetInstanceType(InstanceType.ImplementedSceneObject);
             context.SetImplementation(foundObject);
 
             return context;

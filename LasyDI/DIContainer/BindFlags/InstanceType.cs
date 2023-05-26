@@ -4,6 +4,7 @@
     {
         Created,
         ImplementedPrefab,
+        ImplementedSceneObject,
         Implemented
     }
 }
